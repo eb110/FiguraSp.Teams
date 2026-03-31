@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FiguraSp.SharedLibrary\FiguraSp.SharedLibrary.Solution\FiguraSp.SharedLibrary\FiguraSp.SharedLibrary.csproj" />
+    <ProjectReference Include="..\FiguraSp.Teams.Model\FiguraSp.Teams.Model.csproj" />
+    <ProjectReference Include="..\FiguraSp.Teams.Service\FiguraSp.Teams.Service.csproj" />
+  </ItemGroup>
+
 </Project>
