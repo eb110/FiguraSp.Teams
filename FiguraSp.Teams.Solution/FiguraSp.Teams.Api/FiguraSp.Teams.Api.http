@@ -1,0 +1,6 @@
+@FiguraSp.Teams.Api_HostAddress = http://localhost:5291
+
+GET {{FiguraSp.Teams.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
