@@ -1,4 +1,5 @@
-﻿using FiguraSp.Teams.Model.Responses;
+﻿using FiguraSp.SharedLibrary.Responses;
+using FiguraSp.Teams.Model.Responses;
 using FiguraSp.Teams.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,19 @@ namespace FiguraSp.Teams.Api.Controllers
         {
             var teams = await teamService.GetTeams();
             return Ok(teams);
+        }
+
+        [HttpPost]
+        [Route("CheckTeams")]
+        public async Task<ActionResult<DefaultResponse>> CheckTeamsById([FromBody] List<Guid> ids)
+        {
+            var response = await teamService.CheckTeamsById(ids);
+            if(response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
         }
     }
 }
