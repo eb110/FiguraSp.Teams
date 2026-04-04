@@ -1,4 +1,5 @@
 ﻿using FiguraSp.SharedLibrary.Responses;
+using FiguraSp.Teams.Model.Entity;
 using FiguraSp.Teams.Model.Responses;
 using FiguraSp.Teams.Service.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,21 @@ namespace FiguraSp.Teams.Api.Controllers
     {
         [HttpGet]
         [Route("Teams")]
-        //comes directly from the shared library, so it is protected by the jwt scheme, so we need to be authorized to access it
         public async Task<ActionResult<List<TeamResponseDto>>> GetAllRiders()
         {
             var teams = await teamService.GetTeams();
             return Ok(teams);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<TeamResponseDto>>> GetRider(Guid id)
+        {
+            var response = await teamService.GetTeamById(id);
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
         }
 
         [HttpPost]

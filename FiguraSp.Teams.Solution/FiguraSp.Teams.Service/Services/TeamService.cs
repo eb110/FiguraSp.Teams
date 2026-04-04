@@ -32,6 +32,17 @@ namespace FiguraSp.Teams.Service.Services
             return new() { Success = true };
         }
 
+        public async Task<TeamResponseDto> GetTeamById(Guid id)
+        {
+            IQueryable<Team> query = context.Team.Where(x => x.Id.Equals(id)).AsQueryable().AsNoTracking();
+            var team = await context.GetFirstOrDefaultAsync(query);
+            if(team == null)
+            {
+                return new() { Errors = ["team doe's not exist"] };
+            }
+            return team.ToTeamResponseDto();
+        }
+
         public async Task<List<TeamResponseDto>> GetTeams()
         {
             IQueryable<Team> query = context.Team.AsQueryable().AsNoTracking();
@@ -45,5 +56,7 @@ namespace FiguraSp.Teams.Service.Services
     {
         public Task<List<TeamResponseDto>> GetTeams();
         public Task<DefaultResponse> CheckTeamsById(List<Guid> ids);
+
+        public Task<TeamResponseDto> GetTeamById(Guid id);
     }
 }
