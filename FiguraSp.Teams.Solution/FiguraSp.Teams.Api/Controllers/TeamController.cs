@@ -1,5 +1,4 @@
 ﻿using FiguraSp.SharedLibrary.Responses;
-using FiguraSp.Teams.Model.Entity;
 using FiguraSp.Teams.Model.Responses;
 using FiguraSp.Teams.Service.Services;
 using Microsoft.AspNetCore.Mvc;

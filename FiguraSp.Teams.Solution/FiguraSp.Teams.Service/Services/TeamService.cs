@@ -45,7 +45,7 @@ namespace FiguraSp.Teams.Service.Services
 
         public async Task<List<TeamResponseDto>> GetTeams()
         {
-            IQueryable<Team> query = context.Team.AsQueryable().AsNoTracking();
+            IQueryable<Team> query = context.Team.AsQueryable().OrderBy(x => x.City).AsNoTracking();
             var teams = await context.GetEntitiesToListAsync(query);
             List<TeamResponseDto> result = [.. teams.Select(x => x.ToTeamResponseDto())];
             return result;
